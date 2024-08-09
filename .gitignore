@@ -1,34 +1,28 @@
-# Dependency directories
+# Node modules directory
 node_modules/
 
-# Build output
-build/
+# Build output directory
+dist/
 
-# Logs
+# Vite cache
+.vite/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Log files
 *.log
 
-# Operating System files
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# Environment variable files
-.env
-.env.*.local
-
-# npm package lock files
-package-lock.json
-yarn.lock
-
-# Optional: local IDE settings
-.vscode/
+# IDE/editor files
 .idea/
-
-# Optional: temporary files
-*.tmp
+.vscode/
 *.swp
-*.swo
 
-# Miscellaneous
-*.DS_Store
-*.sublime-workspace
-*.sublime-project
+# Optional: NPM package lock files (if you're using Yarn)
+package-lock.json
