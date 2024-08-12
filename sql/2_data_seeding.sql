@@ -30,12 +30,12 @@ INSERT INTO "user" (name, email, password, address, additional_info) VALUES
 ('Bob Brown', 'bob.brown@example.com', '123456', '101 Maple Lane', 'New user');
 
 -- Insert data into 'item' table
-INSERT INTO item (category_id, size_id, brand_id, seller_id, name, status, description, price, order_status, user_id) VALUES
-(1, 2, 1, 1, 'Nike Air Max', 1, 'Comfortable running shoes', 120.00, 1, 1),
-(2, 3, 2, 2, 'Adidas T-Shirt', 1, 'Cotton casual T-shirt', 25.00, 1, 2),
-(4, 1, 3, 3, 'Puma Sneakers', 1, 'Stylish and durable sneakers', 90.00, 1, NULL),
-(3, 4, 4, 1, 'Under Armour Cap', 1, 'High-quality sports cap', 20.00, 1, 3),
-(5, 5, 5, 4, 'Reebok Jacket', 1, 'Warm outdoor jacket', 150.00, 1, NULL);
+INSERT INTO item (category_id, size_id, brand_id, seller_id, name, status, description, price, user_id) VALUES
+(1, 2, 1, 1, 'Nike Air Max', 1, 'Comfortable running shoes', 120.00, 1),
+(2, 3, 2, 2, 'Adidas T-Shirt', 1, 'Cotton casual T-shirt', 25.00, 2),
+(4, 1, 3, 3, 'Puma Sneakers', 1, 'Stylish and durable sneakers', 90.00, NULL),
+(3, 4, 4, 1, 'Under Armour Cap', 1, 'High-quality sports cap', 20.00, 3),
+(5, 5, 5, 4, 'Reebok Jacket', 1, 'Warm outdoor jacket', 150.00, NULL);
 
 -- Insert data into 'liked_items' table
 INSERT INTO liked_items (user_id, item_id) VALUES
