@@ -1,0 +1,39 @@
+# Maven build directories
+target
+.mvn
+.mvnw
+.mvnw.cmd
+
+# Local IDE files
+.idea
+.vscode
+*.iml
+*.swp
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Java specific
+*.class
+
+# Environment variables
+.env
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build tools cache
+**/node_modules
+**/bower_components
+
+# Test coverage reports
+coverage
