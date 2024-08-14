@@ -1,57 +1,51 @@
-// package com.example.backend.security;
+ package com.example.backend.security;
 
-// import lombok.Data;
-// import org.springframework.data.annotation.Id;
-// import org.springframework.security.core.GrantedAuthority;
-// import org.springframework.security.core.userdetails.UserDetails;
+ import com.example.backend.model.Item;
+ import jakarta.persistence.*;
+ import lombok.*;
 
-// import java.util.Collection;
-// import java.util.List;
+ import java.util.List;
+ import java.util.Set;
 
-// @Data // убрать или оставить
-// public class User implements UserDetails {
+ @Entity
+ @Setter
+ @Getter
+ @NoArgsConstructor
+ @AllArgsConstructor
+ @ToString
+ @Table(name = "user")
+ public class User{
 
-//     @Id
-//     private long id;
+     @Id
+     private long id;
 
-//     private String name;
-//     private String email;
-//     private String password;
-//     private String address;
-//     private String additionalInfo;
+     @Column(name = "name", nullable = false)
+     private String name;
 
-//     @Override
-//     public Collection<? extends GrantedAuthority> getAuthorities() {
-//         return List.of();
-//     }
+     @Column(name = "email", nullable = false)
+     private String email;
 
-//     @Override
-//     public String getPassword() {
-//         return "";
-//     }
+     @Column(name = "password", nullable = false)
+     private String password;
 
-//     @Override
-//     public String getUsername() {
-//         return "";
-//     }
+     @Column(name = "address", nullable = false)
+     private String address;
 
-//     @Override
-//     public boolean isAccountNonExpired() {
-//         return UserDetails.super.isAccountNonExpired();
-//     }
+     @Column(name = "additional_info", nullable = false)
+     private String additionalInfo;
 
-//     @Override
-//     public boolean isAccountNonLocked() {
-//         return UserDetails.super.isAccountNonLocked();
-//     }
+     @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL)
+     private List<Item> itemsAsUser;
 
-//     @Override
-//     public boolean isCredentialsNonExpired() {
-//         return UserDetails.super.isCredentialsNonExpired();
-//     }
+     @OneToMany(mappedBy = "seller", orphanRemoval = true, cascade = CascadeType.ALL)
+     private List<Item> itemsAsSeller;
 
-//     @Override
-//     public boolean isEnabled() {
-//         return UserDetails.super.isEnabled();
-//     }
-// }
+     @ManyToMany
+     @JoinTable(
+             name = "liked_items",
+             joinColumns = @JoinColumn(name = "user_id"),
+             inverseJoinColumns = @JoinColumn(name = "item_id")
+     )
+     private Set<Item> likedItems;
+
+ }

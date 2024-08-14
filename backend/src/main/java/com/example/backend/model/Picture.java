@@ -1,15 +1,28 @@
 package com.example.backend.model;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Table(name = "picture")
 public class Picture {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private int itemId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id", nullable = false)
+    private Item item;
+
+    @Column(name = "file_name", nullable = false)
     private String fileName;
+
+    @Column(name = "file_location", nullable = false)
     private String fileLocation;
 }
