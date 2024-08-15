@@ -21,6 +21,6 @@ public class Brand {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "brand")
     private List<Item> items;
 }
