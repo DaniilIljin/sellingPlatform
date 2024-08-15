@@ -6,16 +6,13 @@ import lombok.*;
 
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@Setter
-@Getter
-@AllArgsConstructor
-@ToString
-@Table(name = "item")
+@Data
 public class Item {
 
     @Id
@@ -38,23 +35,23 @@ public class Item {
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "status", nullable = false)
-    private Integer status;
+    @Column(nullable = false)
+    private int status;
 
-    @Column(name = "description", nullable = false)
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "price", nullable = false)
+    @Column(nullable = false)
     private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
     @ManyToMany(mappedBy = "likedItems")

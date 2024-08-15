@@ -2,11 +2,14 @@ package com.example.backend.specification;
 
 import com.example.backend.model.Category;
 import com.example.backend.model.Item;
+import com.example.backend.model.Size;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class ItemSpecs {
 
     public static Specification<Item> hasCategoryId(Long categoryId) {
@@ -16,14 +19,14 @@ public class ItemSpecs {
         ) -> {
             if (categoryId == null) return null;
             Join<Item, Category> categoryJoin = root.join("category", JoinType.INNER);
-            return builder.equal(categoryJoin.get("id"), categoryId);
+            return builder.equal(categoryJoin.get("category_id"), categoryId);
         };
     }
 
-    public static Specification<Item> hasSizeId(Long sizeId) {
+    public static Specification<Item> hasSize(Long size) {
         return (root, query, criteriaBuilder) -> {
-            if (sizeId == null) return null;
-            return criteriaBuilder.equal(root.get("sizeId"), sizeId);
+            if (size == null) return null;
+            return criteriaBuilder.equal(root.get("size"), size);
         };
     }
 

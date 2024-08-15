@@ -3,13 +3,11 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigInteger;
+
 @Entity
-@Setter
-@Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Table(name = "picture")
+@Data
 public class Picture {
 
     @Id

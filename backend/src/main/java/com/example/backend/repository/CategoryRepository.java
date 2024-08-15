@@ -6,13 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    List<Category> findByNameContains(String name);
+    List<Category> findAllByNameContains(String name);
 
-    List<Category> findByParent(Category category);
+    List<Category> findAllByParentId(Long parentId);
 
-    List<Category> findByParentId(Long id);
+    Optional<Category> findByNameEquals(String name);
 
 }

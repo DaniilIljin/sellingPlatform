@@ -3,22 +3,19 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Table(name = "brand")
+@Data
 public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "brand")

@@ -8,36 +8,33 @@
  import java.util.Set;
 
  @Entity
- @Setter
- @Getter
  @NoArgsConstructor
- @AllArgsConstructor
- @ToString
- @Table(name = "user")
+ @Data
  public class User{
 
      @Id
-     private long id;
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
 
-     @Column(name = "name", nullable = false)
+     @Column(nullable = false)
      private String name;
 
-     @Column(name = "email", nullable = false)
+     @Column( nullable = false)
      private String email;
 
-     @Column(name = "password", nullable = false)
+     @Column(nullable = false)
      private String password;
 
-     @Column(name = "address", nullable = false)
+     @Column(nullable = false)
      private String address;
 
      @Column(name = "additional_info", nullable = false)
      private String additionalInfo;
 
-     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
      private List<Item> itemsAsUser;
 
-     @OneToMany(mappedBy = "seller", orphanRemoval = true, cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
      private List<Item> itemsAsSeller;
 
      @ManyToMany
