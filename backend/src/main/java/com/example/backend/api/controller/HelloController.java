@@ -1,4 +1,7 @@
-package com.example.backend.controller;
+package com.example.backend.api.controller;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/hello")
 public class HelloController {
 
@@ -18,10 +21,11 @@ public class HelloController {
     private Map<Long, String> database = new HashMap<>();
     private long idCounter = 1;
 
+
     // Endpoint to get a greeting message
     @GetMapping
     public String getGreeting() {
-        return "Hello, World!";
+        return "hi";
     }
 
     // Endpoint to get a specific greeting message by ID
