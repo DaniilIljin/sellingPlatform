@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
-    public List<Brand> getAllByNameContains(String name);
+    List<Brand> getAllByNameContains(String name);
 
 }

@@ -34,7 +34,7 @@
      @Column(name = "additional_info", nullable = false)
      private String additionalInfo;
 
-     @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
      private List<Item> itemsAsUser;
 
      @OneToMany(mappedBy = "seller", orphanRemoval = true, cascade = CascadeType.ALL)
