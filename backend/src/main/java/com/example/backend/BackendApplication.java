@@ -28,9 +28,9 @@ public class BackendApplication {
 											ItemRepository itemRepository) {
 		return args -> {
 
-			List<Item> categories = itemRepository.findByCategoryId(2L);
-			categories.forEach(o -> System.out.println(o.getName()));
-			if (categories.isEmpty()) System.out.println("123");
+			Specification<Item> specification = Specification.where(ItemSpecs.hasCategoryId(2L));
+			List<Item> items = itemRepository.findAll(specification);
+			items.forEach(o -> System.out.println(o.getName()));
 		};
 	};
 }

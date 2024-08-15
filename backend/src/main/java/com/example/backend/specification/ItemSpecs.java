@@ -1,9 +1,8 @@
 package com.example.backend.specification;
 
+import com.example.backend.model.Category;
 import com.example.backend.model.Item;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
@@ -16,7 +15,8 @@ public class ItemSpecs {
                 CriteriaBuilder builder
         ) -> {
             if (categoryId == null) return null;
-            return builder.equal(root.get("categoryId"), categoryId);
+            Join<Item, Category> categoryJoin = root.join("category", JoinType.INNER);
+            return builder.equal(categoryJoin.get("id"), categoryId);
         };
     }
 
