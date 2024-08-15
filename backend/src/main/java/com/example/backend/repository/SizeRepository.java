@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SizeRepository extends JpaRepository<Size, Long> {
 
-    List<Size> getByNameContains(String name);
+    List<Size> findByNameContains(String name);
 }
