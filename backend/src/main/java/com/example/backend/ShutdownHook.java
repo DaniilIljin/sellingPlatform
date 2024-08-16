@@ -1,10 +1,10 @@
 package com.example.backend;
 
+import java.io.IOException;
+
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class ShutdownHook {
@@ -17,10 +17,10 @@ public class ShutdownHook {
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
             process.waitFor();
-            System.out.println("Command executed successfully.");
+            System.out.println("Docker containers are removed.");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            System.err.println("Failed to execute command.");
+            System.err.println("Failed to deletedocker containers.");
         }
     }
 }
