@@ -27,9 +27,9 @@ public class BackendApplication {
 //										ItemRepository itemRepository, SizeRepository sizeRepository) {
 //		return args -> {
 //
-//			Specification<Item> specification = Specification.where(ItemSpecs.hasSize(2L));
+//			Specification<Item> specification = Specification.where(ItemSpecs.bySizeId(2L));
 //			List<Item> items = itemRepository.findAll(specification);
-//			items.forEach(o -> System.out.println(o.getName()));
+//			items.forEach(o -> System.out.println(o));
 //		};
 //	};
 }

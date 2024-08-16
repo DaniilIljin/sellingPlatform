@@ -12,39 +12,55 @@ import java.math.BigDecimal;
 @Component
 public class ItemSpecs {
 
-    public static Specification<Item> hasCategoryId(Long categoryId) {
+    public static Specification<Item> buildSpecification(Long categoryId, Long sizeId,
+                                                         Long brandId, Long sellerId, String name,
+                                                         Integer status, String description,
+                                                         BigDecimal minPrice, BigDecimal maxPrice,
+                                                         Long userId) {
+
+        return Specification.where(byCategoryId(categoryId))
+                .and(bySizeId(sizeId))
+                .and(byBrandId(brandId))
+                .and(bySellerId(sellerId))
+                .and(byContainsName(name))
+                .and(byStatus(status))
+                .and(byContainsDescription(description))
+                .and(byPriceBetween(minPrice, maxPrice))
+                .and(byUserId(userId));
+    }
+
+    public static Specification<Item> byCategoryId(Long categoryId) {
         return (Root<Item> root,
                 CriteriaQuery<?> query,
                 CriteriaBuilder builder
         ) -> {
             if (categoryId == null) return null;
-            Join<Item, Category> categoryJoin = root.join("category", JoinType.INNER);
-            return builder.equal(categoryJoin.get("category_id"), categoryId);
+            return builder.equal(root.get("categoryId").get("id"), categoryId);
         };
     }
 
-//    public static Specification<Item> hasSize(Long size) {
-//        return (root, query, criteriaBuilder) -> {
-//            if (size == null) return null;
-//            return criteriaBuilder.equal(root.get("size"), size);
-//        };
-//    }
+    public static Specification<Item> bySizeId(Long sizeId) {
+        return (root, query, criteriaBuilder) -> {
+            if (sizeId == null) return null;
+            return criteriaBuilder.equal(root.get("size").get("id"), sizeId);
+        };
+    }
 
-    public static Specification<Item> hasBrandId(Long brandId) {
+    public static Specification<Item> byBrandId(Long brandId) {
         return (root, query, criteriaBuilder) -> {
             if (brandId == null) return null;
-            return criteriaBuilder.equal(root.get("brandId"), brandId);
+            return criteriaBuilder.equal(root.get("brand").get("id"), brandId);
         };
     }
 
-    public static Specification<Item> hasSellerId(Long sellerId) {
+    public static Specification<Item> bySellerId(Long sellerId) {
         return (root, query, criteriaBuilder) -> {
             if (sellerId == null) return null;
-            return criteriaBuilder.equal(root.get("sellerId"), sellerId);
+            return criteriaBuilder.equal(root.get("seller").get("id"), sellerId);
         };
     }
 
-    public static Specification<Item> containsName(String name) {
+    public static Specification<Item> byContainsName(String name) {
         return (root, query, criteriaBuilder) -> {
             if (name == null || name.isEmpty()) return null;
             String pattern = "%" + name + "%";
@@ -52,14 +68,14 @@ public class ItemSpecs {
         };
     }
 
-    public static Specification<Item> hasStatus(Integer status) {
+    public static Specification<Item> byStatus(Integer status) {
         return (root, query, criteriaBuilder) -> {
             if (status == null) return null;
             return criteriaBuilder.equal(root.get("status"), status);
         };
     }
 
-    public static Specification<Item> containsDescription(String description) {
+    public static Specification<Item> byContainsDescription(String description) {
         return (root, query, criteriaBuilder) -> {
             if (description == null || description.isEmpty()) return null;
             String pattern = "%" + description + "%";
@@ -67,7 +83,7 @@ public class ItemSpecs {
         };
     }
 
-    public static Specification<Item> hasPriceBetween(BigDecimal minPrice, BigDecimal maxPrice) {
+    public static Specification<Item> byPriceBetween(BigDecimal minPrice, BigDecimal maxPrice) {
         return (root, query, criteriaBuilder) -> {
             if (minPrice == null && maxPrice == null) return null;
             if (minPrice == null) {
@@ -80,10 +96,10 @@ public class ItemSpecs {
         };
     }
 
-    public static Specification<Item> hasUserId(Long userId) {
+    public static Specification<Item> byUserId(Long userId) {
         return (root, query, criteriaBuilder) -> {
             if (userId == null) return null;
-            return criteriaBuilder.equal(root.get("userId"), userId);
+            return criteriaBuilder.equal(root.get("user").get("id"), userId);
         };
     }
 }

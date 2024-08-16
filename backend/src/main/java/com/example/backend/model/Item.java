@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.example.backend.security.User;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,7 +50,7 @@ public class Item {
     private String name;
 
     @Column(nullable = false)
-    private int status;
+    private Integer status;
 
     @Column(nullable = false)
     private String description;
