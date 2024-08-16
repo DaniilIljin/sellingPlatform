@@ -1,14 +1,16 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigInteger;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Brand {
 
     @Id
@@ -19,5 +21,6 @@ public class Brand {
     private String name;
 
     @OneToMany(mappedBy = "brand")
-    private List<Item> items;
+    @JsonBackReference
+    private Set<Item> items;
 }

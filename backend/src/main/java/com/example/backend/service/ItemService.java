@@ -3,8 +3,10 @@ package com.example.backend.service;
 import com.example.backend.model.Item;
 import com.example.backend.specification.ItemSpecs;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,8 +33,11 @@ public class ItemService {
         return repositoryManager.getItemRepository().findAll();
     }
 
+
     public Item getItemById(Long id) {
-        return repositoryManager.getItemRepository().findById(id).get();
+        Item item = repositoryManager.getItemRepository().findById(id).orElse(null);
+        System.out.println(item.getCategory().getName());
+        return item;
     }
 
 }
