@@ -25,14 +25,14 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner(BrandRepository brandRepository, CategoryRepository categoryRepository,
-										ItemRepository itemRepository, SizeRepository sizeRepository) {
-		return args -> {
-
-			Specification<Item> specification = Specification.where(ItemSpecs.hasSize(2L));
-			List<Item> items = itemRepository.findAll(specification);
-			items.forEach(o -> System.out.println(o.getName()));
-		};
-	};
+//	@Bean
+//	CommandLineRunner commandLineRunner(BrandRepository brandRepository, CategoryRepository categoryRepository,
+//										ItemRepository itemRepository, SizeRepository sizeRepository) {
+//		return args -> {
+//
+//			Specification<Item> specification = Specification.where(ItemSpecs.hasSize(2L));
+//			List<Item> items = itemRepository.findAll(specification);
+//			items.forEach(o -> System.out.println(o.getName()));
+//		};
+//	};
 }

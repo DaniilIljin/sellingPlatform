@@ -23,12 +23,12 @@ public class ItemSpecs {
         };
     }
 
-    public static Specification<Item> hasSize(Long size) {
-        return (root, query, criteriaBuilder) -> {
-            if (size == null) return null;
-            return criteriaBuilder.equal(root.get("size"), size);
-        };
-    }
+//    public static Specification<Item> hasSize(Long size) {
+//        return (root, query, criteriaBuilder) -> {
+//            if (size == null) return null;
+//            return criteriaBuilder.equal(root.get("size"), size);
+//        };
+//    }
 
     public static Specification<Item> hasBrandId(Long brandId) {
         return (root, query, criteriaBuilder) -> {
