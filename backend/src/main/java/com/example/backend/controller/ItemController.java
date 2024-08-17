@@ -1,6 +1,8 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.ItemDTO;
 import com.example.backend.model.Item;
+import com.example.backend.repository.DenItemRepository;
 import com.example.backend.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/all")
-    public List<Item> getAllItems() {
+    public List<ItemDTO> getAllItems() {
         return itemService.getAllItems();
     }
 

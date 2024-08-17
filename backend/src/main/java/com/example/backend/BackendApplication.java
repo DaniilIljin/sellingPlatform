@@ -2,6 +2,7 @@ package com.example.backend;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,11 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
+
+	@Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
 //	@Bean
 //	CommandLineRunner commandLineRunner(BrandRepository brandRepository, CategoryRepository categoryRepository,
