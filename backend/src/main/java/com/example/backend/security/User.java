@@ -1,10 +1,6 @@
  package com.example.backend.security;
 
  import com.example.backend.model.Item;
- import com.fasterxml.jackson.annotation.JsonBackReference;
- import com.fasterxml.jackson.annotation.JsonIgnore;
- import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
- import com.fasterxml.jackson.annotation.JsonManagedReference;
  import jakarta.persistence.*;
  import lombok.*;
 
@@ -14,7 +10,6 @@
  @Entity
  @NoArgsConstructor
  @Data
- @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
  @Table(name = "\"user\"")
  public class User{
 
@@ -28,7 +23,6 @@
      @Column( nullable = false)
      private String email;
 
-     @JsonIgnore
      @Column(nullable = false)
      private String password;
 
@@ -39,11 +33,9 @@
      private String additionalInfo;
 
      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-     @JsonBackReference
      private List<Item> itemsAsUser;
 
      @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-     @JsonBackReference
      private List<Item> itemsAsSeller;
 
      @ManyToMany
@@ -52,7 +44,6 @@
              joinColumns = @JoinColumn(name = "user_id"),
              inverseJoinColumns = @JoinColumn(name = "item_id")
      )
-     @JsonManagedReference
      private Set<Item> likedItems;
 
  }
