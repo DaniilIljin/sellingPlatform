@@ -1,19 +1,6 @@
+include:
+  - backend/compose.yaml
 services:
-
-  postgres:
-    image: 'postgres:alpine'
-    container_name: testdb
-    restart: always
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
-    ports:
-      - '5432:5432'
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./sql:/docker-entrypoint-initdb.d
-
   backend:
     build: 
       context: backend
@@ -35,6 +22,3 @@ services:
     container_name: frontend
     ports:
       - "80:80"
-
-volumes:
-  pgdata:

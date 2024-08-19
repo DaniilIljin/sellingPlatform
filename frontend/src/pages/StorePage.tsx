@@ -1,44 +1,37 @@
-import { useState } from "react";
 import {
-    createTheme,
-    ThemeProvider,
-    CssBaseline,
-    Container,
-    Grid,
-    Paper,
-    Typography,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Box,
-    Card,
-    CardContent,
-    CardMedia,
-    IconButton,
-    TextField,
-    Divider,
-    Switch,
-    SpeedDial,
-    SpeedDialAction,
-    SpeedDialIcon,
-    AppBar,
-    Button,
-    Toolbar,
-    Fade,
-    Fab,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  AppBar,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  createTheme,
+  CssBaseline,
+  Grid,
+  IconButton,
+  Paper,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Switch,
+  TextField,
+  ThemeProvider,
+  Toolbar,
+  Typography
 } from "@mui/material";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useState } from "react";
 
-import LightModeIcon from "@mui/icons-material/LightMode";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PersonIcon from "@mui/icons-material/Person";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import SearchIcon from "@mui/icons-material/Search";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 // Define themes
 const darkTheme = createTheme({
@@ -189,40 +182,41 @@ const actions = [
         action: () => window.open("https://chat.example.com", "_blank"),
     },
 ];
-interface Props {
-    children: React.ReactElement;
-}
 
-function ScrollTop(props: Props) {
-    const { children } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
+// interface Props {
+//     children: React.ReactElement;
+// }
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        const anchor = (
-            (event.target as HTMLDivElement).ownerDocument || document
-        ).querySelector("#back-to-top-anchor");
+// function ScrollTop(props: Props) {
+//     const { children } = props;
+//     // Note that you normally won't need to set the window ref as useScrollTrigger
+//     // will default to window.
+//     // This is only being set here because the demo is in an iframe.
 
-        if (anchor) {
-            anchor.scrollIntoView({
-                block: "start",
-            });
-        }
-    };
+//     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+//         const anchor = (
+//             (event.target as HTMLDivElement).ownerDocument || document
+//         ).querySelector("#back-to-top-anchor");
 
-    return (
-        <Fade>
-            <Box
-                onClick={handleClick}
-                role="presentation"
-                sx={{ position: "fixed", bottom: 16, right: 16 }}
-            >
-                {children}
-            </Box>
-        </Fade>
-    );
-}
+//         if (anchor) {
+//             anchor.scrollIntoView({
+//                 block: "start",
+//             });
+//         }
+//     };
+
+//     return (
+//         <Fade>
+//             <Box
+//                 onClick={handleClick}
+//                 role="presentation"
+//                 sx={{ position: "fixed", bottom: 16, right: 16 }}
+//             >
+//                 {children}
+//             </Box>
+//         </Fade>
+//     );
+// }
 
 const StorePage = () => {
     const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
@@ -316,10 +310,9 @@ const StorePage = () => {
                                 >
                                     <FavoriteIcon />
                                     <Typography variant="body2">
-                                    Liked Items
-                                </Typography>
+                                        Liked Items
+                                    </Typography>
                                 </Button>
-
                             </Box>
                             <Box sx={{ mb: 1 }}>
                                 <TextField
