@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.dto.SizeDTO;
 import com.example.backend.mapper.SizeMapper;
 import com.example.backend.model.Size;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,11 @@ public class SizeService {
     private final SizeMapper mapper;
 
     public SizeDTO getSizeById(Long id) {
-        return mapper.
-                convertSizeToSizeDTO(repositoryManager.
-                        getSizeRepository().
-                        findById(id).
-                        get());
+        return repositoryManager
+                .getSizeRepository()
+                .findById(id)
+                .map(mapper::convertSizeToSizeDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Size wasn't found"));
     }
 
 

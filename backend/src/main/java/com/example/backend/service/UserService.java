@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dto.UserDTO;
 import com.example.backend.mapper.UserMapper;
-import com.example.backend.security.User;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +17,20 @@ public class UserService {
     private final UserMapper mapper;
 
     public UserDTO getUserById(Long id) {
-        return mapper.
-                convertUserToUserDRO(repositoryManager.
-                        getUserRepository().
-                        findById(id).
-                        get());
+        return repositoryManager
+                .getUserRepository()
+                .findById(id)
+                .map(mapper::convertUserToUserDTO)
+                .orElseThrow(() -> new EntityNotFoundException("User wasn't found"));
     }
 
     public List<UserDTO> getAllUsers() {
-        return repositoryManager.
-                getUserRepository().
-                findAll().
-                stream().
-                map(mapper::convertUserToUserDRO).
-                toList();
+        return repositoryManager
+                .getUserRepository()
+                .findAll()
+                .stream()
+                .map(mapper::convertUserToUserDTO)
+                .toList();
     }
 
 

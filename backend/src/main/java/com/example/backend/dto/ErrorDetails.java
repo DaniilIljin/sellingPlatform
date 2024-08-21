@@ -6,6 +6,5 @@ import lombok.Data;
 public class ErrorDetails {
 
     private String message;
-    private Long id;
-    private String name;
+
 }

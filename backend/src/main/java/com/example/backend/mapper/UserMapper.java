@@ -12,7 +12,7 @@ public class UserMapper {
 
     private final ModelMapper modelMapper;
 
-    public UserDTO convertUserToUserDRO(User user) {
+    public UserDTO convertUserToUserDTO(User user) {
         return modelMapper.map(user, UserDTO.class);
     }
 

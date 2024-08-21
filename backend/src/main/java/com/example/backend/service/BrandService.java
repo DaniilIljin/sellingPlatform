@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.dto.BrandDTO;
 import com.example.backend.mapper.BrandMapper;
 import com.example.backend.model.Brand;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +18,19 @@ public class BrandService {
     private final BrandMapper mapper;
 
     public BrandDTO getBrandById(Long id) {
-        return mapper.
-                convertBrandToBrandDTO(repositoryManager.
-                        getBrandRepository().
-                        findById(id).
-                        get());
+        return repositoryManager
+                .getBrandRepository()
+                .findById(id)
+                .map(mapper::convertBrandToBrandDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Brand wasn't found"));
     }
 
     public List<BrandDTO> getAllBrands() {
-        return repositoryManager.
-                getBrandRepository().
-                findAll().
-                stream().
-                map(mapper::convertBrandToBrandDTO)
+        return repositoryManager
+                .getBrandRepository()
+                .findAll()
+                .stream()
+                .map(mapper::convertBrandToBrandDTO)
                 .toList();
     }
 }

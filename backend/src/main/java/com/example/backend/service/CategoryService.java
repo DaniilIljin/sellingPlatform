@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.dto.CategoryDTO;
 import com.example.backend.mapper.CategoryMapper;
 import com.example.backend.model.Category;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +20,20 @@ public class CategoryService {
 
     public CategoryDTO getCategoryById(Long id) {
 
-        return mapper.
-                convertCategoryToCategoryDTO(repositoryManager.
-                        getCategoryRepository().
-                        findById(id).
-                        get());
+        return repositoryManager
+                .getCategoryRepository()
+                .findById(id)
+                .map(mapper::convertCategoryToCategoryDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Category wasn't found"));
 
     }
 
     public List<CategoryDTO> getAllCategories() {
-        return repositoryManager.
-                getCategoryRepository().
-                findAll().
-                stream().
-                map(mapper::convertCategoryToCategoryDTO).
-                toList();
+        return repositoryManager
+                .getCategoryRepository()
+                .findAll()
+                .stream()
+                .map(mapper::convertCategoryToCategoryDTO)
+                .toList();
     }
 }

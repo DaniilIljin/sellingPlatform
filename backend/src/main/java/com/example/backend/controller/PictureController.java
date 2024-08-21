@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.PictureDTO;
 import com.example.backend.model.Picture;
 import com.example.backend.service.PictureService;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,12 @@ public class PictureController {
     private final PictureService pictureService;
 
     @GetMapping("/all")
-    public List<Picture> getAllPictures() {
+    public List<PictureDTO> getAllPictures() {
         return pictureService.getAllPictures();
     }
 
     @GetMapping
-    public Picture getPicture(@RequestParam Long id) {
+    public PictureDTO getPicture(@RequestParam Long id) {
         return pictureService.getPictureById(id);
     }
 }
