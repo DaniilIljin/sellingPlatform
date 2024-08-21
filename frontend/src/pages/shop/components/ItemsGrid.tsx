@@ -1,11 +1,6 @@
 import {
     Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    Box,
-    IconButton,
+    Typography
 } from "@mui/material";
 import useFetchItems from "../hooks/useFetchItems";
 import ItemCard from "./ItemCard";
