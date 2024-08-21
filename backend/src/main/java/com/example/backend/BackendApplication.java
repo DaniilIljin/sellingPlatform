@@ -2,6 +2,10 @@ package com.example.backend;
 
 import java.util.List;
 
+import com.example.backend.dto.ItemDTO;
+import com.example.backend.model.Category;
+import com.example.backend.service.ItemService;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +19,7 @@ import com.example.backend.repository.CategoryRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.SizeRepository;
 import com.example.backend.specification.ItemSpecs;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -30,12 +35,17 @@ public class BackendApplication {
 
 //	@Bean
 //	CommandLineRunner commandLineRunner(BrandRepository brandRepository, CategoryRepository categoryRepository,
-//										ItemRepository itemRepository, SizeRepository sizeRepository) {
+//										ItemRepository itemRepository, SizeRepository sizeRepository,
+//										ItemService itemService, ModelMapper modelMapper) {
 //		return args -> {
 //
-//			Specification<Item> specification = Specification.where(ItemSpecs.bySizeId(2L));
-//			List<Item> items = itemRepository.findAll(specification);
-//			items.forEach(o -> System.out.println(o));
+//			//ItemDTO itemDTO = itemService.getItemById(1L);
+//			//ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
+//			//Item item = itemRepository.findById(1L).get();
+//
+////			Item item = itemRepository.findById(1L).get();
+////			System.out.println(item.getCategory().getName());
+//
 //		};
 //	};
 }

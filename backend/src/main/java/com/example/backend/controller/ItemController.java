@@ -24,7 +24,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public Item getItemById(@RequestParam Long id) {
+    public ItemDTO getItemById(@RequestParam Long id) {
         return itemService.getItemById(id);
     }
 }

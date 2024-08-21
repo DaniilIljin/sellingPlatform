@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.model.Brand;
-import com.example.backend.model.Item;
+import com.example.backend.dto.BrandDTO;
 import com.example.backend.service.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,12 @@ public class BrandController {
     private final BrandService brandService;
 
     @GetMapping("/all")
-    public List<Brand> getAllBrands() {
+    public List<BrandDTO> getAllBrands() {
         return brandService.getAllBrands();
     }
 
     @GetMapping
-    public Brand getBrand(@RequestParam Long id) {
+    public BrandDTO getBrand(@RequestParam Long id) {
         return brandService.getBrandById(id);
     }
 }

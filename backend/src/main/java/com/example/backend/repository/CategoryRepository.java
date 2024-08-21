@@ -3,6 +3,7 @@ package com.example.backend.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.backend.model.Category;
@@ -15,4 +16,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Optional<Category> findByNameEquals(String name);
 
+    //@EntityGraph(attributePaths = "parent")
+    List<Category> findAll();
+
+    //@EntityGraph(attributePaths = "parent")
+    Optional<Category> findById(Long id);
 }

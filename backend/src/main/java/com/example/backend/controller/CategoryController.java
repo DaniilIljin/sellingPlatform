@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.CategoryDTO;
 import com.example.backend.model.Category;
 import com.example.backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,12 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public Category getCategory(@RequestParam Long id) {
+    public CategoryDTO getCategory(@RequestParam Long id) {
         return categoryService.getCategoryById(id);
     }
 
     @GetMapping("/all")
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         return categoryService.getAllCategories();
     }
 }

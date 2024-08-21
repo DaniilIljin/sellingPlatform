@@ -12,7 +12,11 @@ INSERT INTO category (name, category_id) VALUES
 ('Casual', NULL),
 ('Accessories', NULL),
 ('Footwear', NULL),
-('Outdoor', NULL);
+('Outdoor', NULL),
+('Clothes', NULL);
+
+INSERT INTO category (name, category_id)
+SELECT 'shoes', id FROM category WHERE name = 'Clothes';
 
 -- Insert data into 'size' table
 INSERT INTO size (name) VALUES

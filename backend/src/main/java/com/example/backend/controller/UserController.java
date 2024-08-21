@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.UserDTO;
 import com.example.backend.security.User;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/all")
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping
-    public User getUser(@RequestParam Long id) {
+    public UserDTO getUser(@RequestParam Long id) {
         return userService.getUserById(id);
     }
 }

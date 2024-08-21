@@ -1,5 +1,7 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.BrandDTO;
+import com.example.backend.mapper.BrandMapper;
 import com.example.backend.model.Brand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,22 @@ public class BrandService {
 
     private final RepositoryManager repositoryManager;
 
-    public Brand getBrandById(Long id) {
-        return repositoryManager.getBrandRepository().findById(id).get();
+    private final BrandMapper mapper;
+
+    public BrandDTO getBrandById(Long id) {
+        return mapper.
+                convertBrandToBrandDTO(repositoryManager.
+                        getBrandRepository().
+                        findById(id).
+                        get());
     }
 
-    public List<Brand> getAllBrands() {
-        return repositoryManager.getBrandRepository().findAll();
+    public List<BrandDTO> getAllBrands() {
+        return repositoryManager.
+                getBrandRepository().
+                findAll().
+                stream().
+                map(mapper::convertBrandToBrandDTO)
+                .toList();
     }
 }

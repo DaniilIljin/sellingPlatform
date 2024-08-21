@@ -1,5 +1,6 @@
 package com.example.backend.repository;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -34,4 +35,10 @@ public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificat
     List<Item> findAllByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 
     List<Item> findAllByUserId(Long userId);
+
+    //@EntityGraph(attributePaths = "category")
+    Optional<Item> findById(Long id);
+
+    //@EntityGraph(attributePaths = "category")
+    List<Item> findAll();
 }
