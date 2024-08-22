@@ -6,6 +6,7 @@ import com.example.backend.model.Category;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class CategoryService {
     }
 
     public List<CategoryDTO> getAllCategories() {
+
         return repositoryManager
                 .getCategoryRepository()
                 .findAll()

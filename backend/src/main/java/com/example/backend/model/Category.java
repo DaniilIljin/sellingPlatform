@@ -3,6 +3,7 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,5 +26,5 @@ public class Category {
     private Set<Item> items;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private Set<Category> subcategories;
+    private List<Category> subcategories;
 }

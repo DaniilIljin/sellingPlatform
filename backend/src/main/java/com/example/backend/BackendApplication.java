@@ -3,6 +3,7 @@ package com.example.backend;
 import java.util.List;
 
 import com.example.backend.dto.ItemDTO;
+import com.example.backend.mapper.CategoryMapper;
 import com.example.backend.model.Category;
 import com.example.backend.service.ItemService;
 import org.hibernate.Hibernate;
@@ -36,15 +37,10 @@ public class BackendApplication {
 //	@Bean
 //	CommandLineRunner commandLineRunner(BrandRepository brandRepository, CategoryRepository categoryRepository,
 //										ItemRepository itemRepository, SizeRepository sizeRepository,
-//										ItemService itemService, ModelMapper modelMapper) {
+//										ItemService itemService, CategoryMapper categoryMapper) {
 //		return args -> {
 //
-//			//ItemDTO itemDTO = itemService.getItemById(1L);
-//			//ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
-//			//Item item = itemRepository.findById(1L).get();
 //
-////			Item item = itemRepository.findById(1L).get();
-////			System.out.println(item.getCategory().getName());
 //
 //		};
 //	};
