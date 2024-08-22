@@ -33,7 +33,7 @@ public class CategoryService {
 
         return repositoryManager
                 .getCategoryRepository()
-                .findAll()
+                .findAllByParentIdNull()
                 .stream()
                 .map(mapper::convertCategoryToCategoryDTO)
                 .toList();
