@@ -1,6 +1,6 @@
-export type Item = {
+export type Categoty = {
     id: number,
     name: string,
-    price: number,
+    categoryId: number,
     categoryName: string
 }

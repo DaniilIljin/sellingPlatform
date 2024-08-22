@@ -1,12 +1,33 @@
-import { AppBar, Toolbar, Typography, Button, Box, Switch } from "@mui/material";
-import { Link } from "react-router-dom";
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    Box,
+    Switch,
+    Link,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const Header = () => {
     return (
-        <AppBar position="static">
+        <AppBar
+            position="static"
+            sx={{
+                borderRadius: 1, // This applies the border-radius
+                overflow: "hidden", // Ensures content doesn't overflow the rounded corners
+            }}
+        >
             <Toolbar>
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                    <Link to={"/shop"}>OKi-huyoki</Link>
+                    <Link
+                        component={RouterLink}
+                        color="inherit"
+                        underline="none"
+                        to={"/shop"}
+                    >
+                        OKi-huyoki
+                    </Link>
                 </Typography>
                 <Button color="inherit">profile</Button>
                 <Box
@@ -15,7 +36,6 @@ const Header = () => {
                         alignItems: "center",
                     }}
                 >
-
                     <Switch
                         // checked={isDarkMode}
                         // onChange={toggleTheme}
