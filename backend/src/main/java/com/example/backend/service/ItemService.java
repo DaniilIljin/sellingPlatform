@@ -48,4 +48,13 @@ public class ItemService {
                 .orElseThrow(() -> new EntityNotFoundException("Item wasn't found"));
     }
 
+    public List<ItemDTO> getItemsByCategoryId(Long categoryId) {
+        return repositoryManager
+                .getItemRepository()
+                .findAllByCategoryId(categoryId)
+                .stream()
+                .map(mapper::convertItemToItemDTO)
+                .toList();
+    }
+
 }
