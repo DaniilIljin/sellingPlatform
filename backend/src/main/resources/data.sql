@@ -15,8 +15,17 @@ INSERT INTO category (name, category_id) VALUES
 ('Outdoor', NULL),
 ('Clothes', NULL);
 
-INSERT INTO category (name, category_id)
-SELECT 'shoes', id FROM category WHERE name = 'Clothes';
+-- inserting subcategories
+INSERT INTO category (name, category_id) VALUES
+('Trainers', (SELECT id FROM category WHERE name = 'Sportswear')),
+('Watches', (SELECT id FROM category WHERE name = 'Accessories')),
+('Sunglasses', (SELECT id FROM category WHERE name = 'Accessories')),
+('Gear', (SELECT id FROM category WHERE name = 'Outdoor'));
+
+-- inserting subsubcategoriy
+INSERT INTO category (name, category_id) VALUES
+('Pickaxe', (SELECT id FROM category WHERE name = 'Gear'));
+
 
 -- Insert data into 'size' table
 INSERT INTO size (name) VALUES
