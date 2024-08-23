@@ -30,7 +30,7 @@ const ItemCard = (props: Props) => {
     };
     return (
         <>
-            <Card>
+            <Card elevation={5}>
                 <CardMedia
                     onClick={handleClick}
                     component="img"

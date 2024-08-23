@@ -1,11 +1,11 @@
 package com.example.backend.repository;
 
-import com.example.backend.security.User;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.backend.security.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

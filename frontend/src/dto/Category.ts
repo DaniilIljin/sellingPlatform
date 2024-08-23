@@ -1,6 +1,5 @@
-export type Categoty = {
+export type Category = {
     id: number,
     name: string,
-    categoryId: number,
-    categoryName: string
+    subcategories: Category[]
 }
