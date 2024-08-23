@@ -1,11 +1,12 @@
 package com.example.backend.mapper;
 
-import com.example.backend.dto.PictureDTO;
-import com.example.backend.model.Picture;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import com.example.backend.dto.PictureDTO;
+import com.example.backend.model.Picture;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component

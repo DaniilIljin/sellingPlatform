@@ -1,13 +1,14 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.PictureDTO;
-import com.example.backend.mapper.PictureMapper;
-import com.example.backend.model.Picture;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.backend.dto.PictureDTO;
+import com.example.backend.mapper.PictureMapper;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

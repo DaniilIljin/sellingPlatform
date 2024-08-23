@@ -1,13 +1,15 @@
 package com.example.backend.specification;
 
-import com.example.backend.model.Category;
-import com.example.backend.model.Item;
-import com.example.backend.model.Size;
-import jakarta.persistence.criteria.*;
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
+import com.example.backend.model.Item;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 @Component
 public class ItemSpecs {

@@ -9,9 +9,14 @@ import {
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
-const Header = () => {
+type Props = {
+    themeMode: boolean,
+    toggleThemeMode: () => void
+}
+
+const Header = (props: Props) => {
     return (
-        <AppBar
+        <AppBar elevation={5}
             position="static"
             sx={{
                 borderRadius: 1, // This applies the border-radius
@@ -37,8 +42,8 @@ const Header = () => {
                     }}
                 >
                     <Switch
-                        // checked={isDarkMode}
-                        // onChange={toggleTheme}
+                        checked={props.themeMode}
+                        onChange={props.toggleThemeMode}
                         color="primary"
                     />
                 </Box>

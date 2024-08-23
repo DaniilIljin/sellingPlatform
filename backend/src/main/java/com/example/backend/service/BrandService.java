@@ -1,13 +1,14 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.BrandDTO;
-import com.example.backend.mapper.BrandMapper;
-import com.example.backend.model.Brand;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.backend.dto.BrandDTO;
+import com.example.backend.mapper.BrandMapper;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

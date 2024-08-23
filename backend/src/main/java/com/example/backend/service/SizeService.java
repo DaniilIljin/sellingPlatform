@@ -1,13 +1,14 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.SizeDTO;
-import com.example.backend.mapper.SizeMapper;
-import com.example.backend.model.Size;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.backend.dto.SizeDTO;
+import com.example.backend.mapper.SizeMapper;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

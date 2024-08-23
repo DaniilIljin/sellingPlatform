@@ -1,15 +1,14 @@
 package com.example.backend.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.backend.dto.CategoryDTO;
 import com.example.backend.mapper.CategoryMapper;
-import com.example.backend.model.Category;
+
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor

@@ -1,23 +1,31 @@
-import { Paper, Box, Button, Typography, TextField, IconButton, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
-
+import {
+    Box,
+    Button,
+    IconButton,
+    Paper,
+    TextField,
+    Typography,
+} from "@mui/material";
+import useFetchCategories from "../hooks/useFetchCategories";
+import CategoryAccordion from "./CategoryAccordion";
 
 const SidePanel = () => {
+    const { categories } = useFetchCategories();
 
-    const categories = [
-        { name: "Electronics", subCategories: ["Phones", "Laptops", "Cameras"] },
-        { name: "Fashion", subCategories: ["Men", "Women", "Kids"] },
-        {
-            name: "Home & Kitchen",
-            subCategories: ["Furniture", "Appliances", "Decor"],
-        },
-    ];
-    
+    // const categories = [
+    //     { name: "Electronics", subCategories: ["Phones", "Laptops", "Cameras"] },
+    //     { name: "Fashion", subCategories: ["Men", "Women", "Kids"] },
+    //     {
+    //         name: "Home & Kitchen",
+    //         subCategories: ["Furniture", "Appliances", "Decor"],
+    //     },
+    // ];
+
     return (
         <>
-            <Paper sx={{ padding: 2, bgcolor: "background.paper" }}>
+            <Paper elevation={5} sx={{ padding: 2, bgcolor: "background.paper" }}>
                 <Box
                     sx={{
                         display: "flex",
@@ -43,7 +51,7 @@ const SidePanel = () => {
                         placeholder="Search..."
                         InputProps={{
                             endAdornment: (
-                                <IconButton edge="end" color="primary">
+                                <IconButton edge="end" >
                                     <SearchIcon />
                                 </IconButton>
                             ),
@@ -53,31 +61,17 @@ const SidePanel = () => {
                         }}
                     />
                 </Box>
+                <Box
+                    sx={{
+                        cursor: "pointer",
+                        fontSize: "16px",
+                    }}
+                >
+                    <Typography>All</Typography>
+                </Box>
 
                 {categories.map((category, index) => (
-                    <Accordion key={index} sx={{ mb: 1 }}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography variant="body1">
-                                {category.name}
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                maxHeight: 100,
-                                overflowY: "auto",
-                            }}
-                        >
-                            {category.subCategories.map((sub, subIndex) => (
-                                <Typography
-                                    key={subIndex}
-                                    variant="body2"
-                                    sx={{ mb: 0.5 }}
-                                >
-                                    {sub}
-                                </Typography>
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
+                    <CategoryAccordion key={index} category={category} />
                 ))}
             </Paper>
         </>
