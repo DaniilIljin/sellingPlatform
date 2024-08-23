@@ -1,5 +1,6 @@
 package com.example.backend.mapper;
 
+import com.example.backend.dto.ItemCreateDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -19,4 +20,8 @@ public class ItemMapper {
     public Item convertItemDTOToItem(ItemDTO object){
         return mapper.map(object, Item.class);
     }
+
+//    public Item convertItemCreateDTOtoItem(ItemCreateDTO itemCreateDTO) {
+//        return mapper.map(itemCreateDTO, Item.class);
+//    }
 }
