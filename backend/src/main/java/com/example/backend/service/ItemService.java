@@ -3,12 +3,15 @@ package com.example.backend.service;
 import com.example.backend.dto.ItemCreateDTO;
 import com.example.backend.dto.ItemDTO;
 import com.example.backend.mapper.ItemMapper;
+import com.example.backend.model.Brand;
+import com.example.backend.model.Category;
 import com.example.backend.model.Item;
+import com.example.backend.model.Size;
+import com.example.backend.security.User;
 import com.example.backend.specification.ItemSpecs;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,7 @@ public class ItemService {
     private final ItemMapper mapper;
 
     private final EntityManager entityManager;
+
 
     public List<Item> getItemsByParams(Long categoryId, Long sizeId, Long brandId,
                                Long sellerId, String name, int status,
@@ -67,7 +71,6 @@ public class ItemService {
 
         Item item = mapper.convertItemCreateDTOtoItem(itemCreateDTO);
         return repositoryManager.getItemRepository().save(item);
-
     }
 
     public void deleteItem(Long id) {
@@ -81,17 +84,41 @@ public class ItemService {
         repositoryManager.getItemRepository().delete(item);
     }
 
-    @Transactional
     public void updateItem(Long id, ItemCreateDTO itemCreateDTO) {
 
-        Item initialItem = repositoryManager.getItemRepository().getReferenceById(id);
+        Item item = repositoryManager
+                .getItemRepository()
+                .getReferenceById(id);
 
-        mapper.convertItemCreateDTOtoItem(itemCreateDTO);
+        item.setName(itemCreateDTO.getName());
+        item.setDescription(item.getDescription());
+        item.setPrice(itemCreateDTO.getPrice());
+        if (itemCreateDTO.getStatus() != null) item.setStatus(itemCreateDTO.getStatus());
 
+        Category category = entityManager
+                .getReference(Category.class, itemCreateDTO.getCategoryId());
+        item.setCategory(category);
 
-//        Item item = mapper.convertItemCreateDTOtoItem(itemCreateDTO);
-//        item.setId(id);
-//        entityManager.merge(item);
-        //repositoryManager.getItemRepository().save(item);
+        Brand brand = entityManager
+                .getReference(Brand.class, itemCreateDTO.getBrandId());
+        item.setBrand(brand);
+
+        Size size = entityManager
+                .getReference(Size.class, itemCreateDTO.getSizeId());
+        item.setSize(size);
+
+        User seller = entityManager
+                .getReference(User.class, itemCreateDTO.getSellerId());
+        item.setSeller(seller);
+
+        if (itemCreateDTO.getUserId() != null) {
+            User user = entityManager
+                    .getReference(User.class, itemCreateDTO.getUserId());
+            item.setUser(user);
+        }
+
+        repositoryManager
+                .getItemRepository()
+                .save(item);
     }
 }

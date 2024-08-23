@@ -4,12 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.backend.dto.ItemCreateDTO;
 import com.example.backend.dto.ItemDTO;
@@ -20,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/item")
+@RequestMapping("api/items")
 public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<ItemDTO> getAllItems() {
         return itemService.getAllItems();
     }
