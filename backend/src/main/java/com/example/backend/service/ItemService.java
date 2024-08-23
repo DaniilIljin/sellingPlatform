@@ -84,11 +84,14 @@ public class ItemService {
         repositoryManager.getItemRepository().delete(item);
     }
 
+    @Transactional
     public void updateItem(Long id, ItemCreateDTO itemCreateDTO) {
 
+        // добавить хэндлинк эксепшена есть айтема с таким ид нет
         Item item = repositoryManager
                 .getItemRepository()
                 .getReferenceById(id);
+
 
         item.setName(itemCreateDTO.getName());
         item.setDescription(item.getDescription());
