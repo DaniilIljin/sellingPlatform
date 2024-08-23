@@ -37,7 +37,21 @@ public class ItemController {
     public ResponseEntity<Void> createItem(@RequestBody ItemCreateDTO itemCreateDTO) {
 
         Item item = itemService.saveItem(itemCreateDTO);
-
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+
+        itemService.deleteItem(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> modifyItem(@PathVariable Long id,
+                                           @RequestBody ItemCreateDTO itemCreateDTO) {
+
+        itemService.updateItem(id, itemCreateDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

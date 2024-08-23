@@ -14,4 +14,6 @@ public class ItemCreateDTO {
     private Long sellerId;
     private String description;
     private BigDecimal price;
+    private Integer status;
+    private Long userId;
 }
