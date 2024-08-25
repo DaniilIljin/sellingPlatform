@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.ItemCreateDTO;
+import com.example.backend.dto.ItemFullDTO;
 import com.example.backend.dto.ItemDTO;
 import com.example.backend.mapper.ItemMapper;
 import com.example.backend.model.Brand;
@@ -69,9 +69,9 @@ public class ItemService {
 
     // подумать где убрать а где оставить transactional
     @Transactional
-    public Item saveItem(ItemCreateDTO itemCreateDTO) {
+    public Item saveItem(ItemFullDTO itemFullDTO) {
 
-        Item item = mapper.convertItemCreateDTOtoItem(itemCreateDTO);
+        Item item = mapper.convertItemFullDTOtoItem(itemFullDTO);
         return repositoryManager.getItemRepository().save(item);
     }
 
@@ -88,7 +88,7 @@ public class ItemService {
 
     //ситуация если в ид в дто и ид в path variable разые
     @Transactional
-    public void updateItem(Long id, ItemCreateDTO itemCreateDTO) {
+    public void updateItem(Long id, ItemFullDTO itemFullDTO) {
 
         // добавить хэндлинг эксепшена если айтема с таким ид нет
         Item item = repositoryManager
@@ -96,31 +96,31 @@ public class ItemService {
                 .getReferenceById(id);
 
 
-        item.setName(itemCreateDTO.getName());
+        item.setName(itemFullDTO.getName());
         item.setDescription(item.getDescription());
-        item.setPrice(itemCreateDTO.getPrice());
-        if (itemCreateDTO.getStatus() != null) item.setStatus(itemCreateDTO.getStatus());
+        item.setPrice(itemFullDTO.getPrice());
+        if (itemFullDTO.getStatus() != null) item.setStatus(itemFullDTO.getStatus());
 
         // поменять метод на такой же метод но ерпозитории
         Category category = entityManager
-                .getReference(Category.class, itemCreateDTO.getCategoryId());
+                .getReference(Category.class, itemFullDTO.getCategoryId());
         item.setCategory(category);
 
         Brand brand = entityManager
-                .getReference(Brand.class, itemCreateDTO.getBrandId());
+                .getReference(Brand.class, itemFullDTO.getBrandId());
         item.setBrand(brand);
 
         Size size = entityManager
-                .getReference(Size.class, itemCreateDTO.getSizeId());
+                .getReference(Size.class, itemFullDTO.getSizeId());
         item.setSize(size);
 
         User seller = entityManager
-                .getReference(User.class, itemCreateDTO.getSellerId());
+                .getReference(User.class, itemFullDTO.getSellerId());
         item.setSeller(seller);
 
-        if (itemCreateDTO.getUserId() != null) {
+        if (itemFullDTO.getUserId() != null) {
             User user = entityManager
-                    .getReference(User.class, itemCreateDTO.getUserId());
+                    .getReference(User.class, itemFullDTO.getUserId());
             item.setUser(user);
         }
 

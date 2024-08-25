@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.backend.dto.ItemCreateDTO;
+import com.example.backend.dto.ItemFullDTO;
 import com.example.backend.dto.ItemDTO;
 import com.example.backend.model.Item;
 import com.example.backend.service.ItemService;
@@ -36,8 +36,8 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createItem(@RequestBody ItemCreateDTO itemCreateDTO) {
-        Item item = itemService.saveItem(itemCreateDTO);
+    public ResponseEntity<Void> createItem(@RequestBody ItemFullDTO itemFullDTO) {
+        Item item = itemService.saveItem(itemFullDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -50,9 +50,9 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> modifyItem(@PathVariable Long id,
-                                           @RequestBody ItemCreateDTO itemCreateDTO) {
+                                           @RequestBody ItemFullDTO itemFullDTO) {
 
-        itemService.updateItem(id, itemCreateDTO);
+        itemService.updateItem(id, itemFullDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

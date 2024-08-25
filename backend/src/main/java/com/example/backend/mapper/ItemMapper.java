@@ -1,6 +1,6 @@
 package com.example.backend.mapper;
 
-import com.example.backend.dto.ItemCreateDTO;
+import com.example.backend.dto.ItemFullDTO;
 import com.example.backend.model.Brand;
 import com.example.backend.model.Category;
 import com.example.backend.model.Size;
@@ -31,33 +31,33 @@ public class ItemMapper {
         return mapper.map(object, Item.class);
     }
 
-    public Item convertItemCreateDTOtoItem(ItemCreateDTO itemCreateDTO) {
+    public Item convertItemFullDTOtoItem(ItemFullDTO itemFullDTO) {
 
         Category category = entityManager
-                .getReference(Category.class, itemCreateDTO.getCategoryId());
+                .getReference(Category.class, itemFullDTO.getCategoryId());
 
         Size size = entityManager
-                .getReference(Size.class, itemCreateDTO.getSizeId());
+                .getReference(Size.class, itemFullDTO.getSizeId());
 
         Brand brand = entityManager
-                .getReference(Brand.class, itemCreateDTO.getBrandId());
+                .getReference(Brand.class, itemFullDTO.getBrandId());
 
         User seller = entityManager
-                .getReference(User.class, itemCreateDTO.getSellerId());
+                .getReference(User.class, itemFullDTO.getSellerId());
 
         User user = null;
 
-        if (itemCreateDTO.getUserId() != null) user = entityManager
-                .getReference(User.class, itemCreateDTO.getUserId());
+        if (itemFullDTO.getUserId() != null) user = entityManager
+                .getReference(User.class, itemFullDTO.getUserId());
 
         int status;
 
-        if (itemCreateDTO.getStatus() == null)  status = 0;
-        else status = itemCreateDTO.getStatus();
+        if (itemFullDTO.getStatus() == null)  status = 0;
+        else status = itemFullDTO.getStatus();
 
-        String name = itemCreateDTO.getName();
-        String description = itemCreateDTO.getDescription();
-        BigDecimal price = itemCreateDTO.getPrice();
+        String name = itemFullDTO.getName();
+        String description = itemFullDTO.getDescription();
+        BigDecimal price = itemFullDTO.getPrice();
 
         Item item = new Item();
 

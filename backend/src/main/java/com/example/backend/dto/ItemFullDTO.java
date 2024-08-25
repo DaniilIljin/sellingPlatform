@@ -5,8 +5,9 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class ItemCreateDTO {
+public class ItemFullDTO {
 
+    private Long id;
     private String name;
     private Long categoryId;
     private Long sizeId;

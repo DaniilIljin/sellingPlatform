@@ -41,7 +41,7 @@ public class CategoryService {
     // разобраться с методоми в mapper для всех энтитис, там можно сделать лучше
     // чтобы все через них мапилось
     public Category saveCategory(CategoryDTO categoryDTO) {
-        Category category = mapper.convertCategoryDTOToNewCategory(categoryDTO);
+        Category category = mapper.convertCategoryDTOToCategory(categoryDTO);
         return repositoryManager
                 .getCategoryRepository()
                 .save(category);

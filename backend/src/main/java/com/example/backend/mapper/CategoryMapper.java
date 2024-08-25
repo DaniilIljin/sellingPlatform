@@ -15,15 +15,15 @@ public class CategoryMapper {
 
     private final EntityManager entityManager;
 
-    public Category convertCategoryDTOToCategory(CategoryDTO categoryDTO) {
-        return modelMapper.map(categoryDTO, Category.class);
-    }
+//    public Category convertCategoryDTOToCategory(CategoryDTO categoryDTO) {
+//        return modelMapper.map(categoryDTO, Category.class);
+//    }
 
     public CategoryDTO convertCategoryToCategoryDTO(Category category) {
         return modelMapper.map(category, CategoryDTO.class);
     }
 
-    public Category convertCategoryDTOToNewCategory(CategoryDTO categoryDTO) {
+    public Category convertCategoryDTOToCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setName(categoryDTO.getName());
         if (categoryDTO.getParentId() == null) category.setParent(null);

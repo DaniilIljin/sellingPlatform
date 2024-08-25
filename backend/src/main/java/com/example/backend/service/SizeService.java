@@ -42,4 +42,22 @@ public class SizeService {
                 .getSizeRepository()
                 .save(size);
     }
+
+    public void deleteSize(Long id) {
+        Size size = repositoryManager
+                .getSizeRepository()
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Size for deleting" +
+                        "wasn't found."));
+
+        repositoryManager
+                .getSizeRepository()
+                .delete(size);
+    }
+
+    public void updateSize(Long id, SizeDTO sizeDTO) {
+        Size size = mapper.convertSizeDTOToSize(sizeDTO);
+        size.setId(id);
+        repositoryManager.getSizeRepository().save(size);
+    }
 }

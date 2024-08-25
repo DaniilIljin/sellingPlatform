@@ -22,8 +22,8 @@ public class SizeController {
         return sizeService.getAllSizes();
     }
 
-    @GetMapping
-    public SizeDTO getSize(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public SizeDTO getSize(@PathVariable Long id) {
         return sizeService.getSizeById(id);
     }
 
@@ -32,4 +32,19 @@ public class SizeController {
         Size size = sizeService.saveSize(sizeDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSize(@PathVariable Long id) {
+        sizeService.deleteSize(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> modofySize(@PathVariable Long id,
+                                           @RequestBody SizeDTO sizeDTO) {
+
+        sizeService.updateSize(id, sizeDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
