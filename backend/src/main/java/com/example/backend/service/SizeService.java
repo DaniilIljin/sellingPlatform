@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import java.util.List;
 
+import com.example.backend.model.Size;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dto.SizeDTO;
@@ -26,7 +27,6 @@ public class SizeService {
                 .orElseThrow(() -> new EntityNotFoundException("Size wasn't found"));
     }
 
-
     public List<SizeDTO> getAllSizes() {
         return repositoryManager.
                 getSizeRepository().
@@ -34,5 +34,12 @@ public class SizeService {
                 stream().
                 map(mapper::convertSizeToSizeDTO).
                 toList();
+    }
+
+    public Size saveSize(SizeDTO sizeDTO) {
+        Size size = mapper.convertSizeDTOToSize(sizeDTO);
+        return repositoryManager
+                .getSizeRepository()
+                .save(size);
     }
 }

@@ -19,4 +19,5 @@ public class BrandMapper {
     public Brand convertBrandDTOToBrand (BrandDTO brandDTO) {
         return modelMapper.map(brandDTO, Brand.class);
     }
+
 }

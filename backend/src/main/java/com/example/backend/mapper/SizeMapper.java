@@ -12,7 +12,7 @@ public class SizeMapper {
 
     private final ModelMapper modelMapper;
 
-    public Size convertSizeDTOToSize(Size sizeDTO) {
+    public Size convertSizeDTOToSize(SizeDTO sizeDTO) {
         return modelMapper.map(sizeDTO, Size.class);
     }
 

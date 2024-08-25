@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/items")
+@RequestMapping("api/item")
 public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ItemDTO> getAllItems() {
         return itemService.getAllItems();
     }
@@ -37,7 +37,6 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(@RequestBody ItemCreateDTO itemCreateDTO) {
-
         Item item = itemService.saveItem(itemCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

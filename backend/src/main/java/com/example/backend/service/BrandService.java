@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import java.util.List;
 
+import com.example.backend.model.Brand;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dto.BrandDTO;
@@ -9,6 +10,7 @@ import com.example.backend.mapper.BrandMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +35,30 @@ public class BrandService {
                 .stream()
                 .map(mapper::convertBrandToBrandDTO)
                 .toList();
+    }
+
+    // где убрать а где оставить transactional
+    @Transactional
+    public Brand saveBrand(BrandDTO brandDTO) {
+        Brand brand = mapper.convertBrandDTOToBrand(brandDTO);
+        return repositoryManager.getBrandRepository().save(brand);
+    }
+
+    // захэндлить ситуацию когда пытаются удалить бренд к которому привязаны айтемы
+    public void deleteBrand(Long id) {
+        Brand brand = repositoryManager
+                .getBrandRepository()
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Brand for deleting" +
+                        " wasn't found"));
+
+        repositoryManager.getBrandRepository().delete(brand);
+    }
+
+    @Transactional
+    public void updateBrand(Long id, BrandDTO brandDTO) {
+        Brand brand = repositoryManager.getBrandRepository().getReferenceById(id);
+        brand.setName(brandDTO.getName());
+        repositoryManager.getBrandRepository().save(brand);
     }
 }

@@ -67,6 +67,8 @@ public class ItemService {
                 .toList();
     }
 
+    // подумать где убрать а где оставить transactional
+    @Transactional
     public Item saveItem(ItemCreateDTO itemCreateDTO) {
 
         Item item = mapper.convertItemCreateDTOtoItem(itemCreateDTO);
@@ -84,10 +86,11 @@ public class ItemService {
         repositoryManager.getItemRepository().delete(item);
     }
 
+    //ситуация если в ид в дто и ид в path variable разые
     @Transactional
     public void updateItem(Long id, ItemCreateDTO itemCreateDTO) {
 
-        // добавить хэндлинк эксепшена есть айтема с таким ид нет
+        // добавить хэндлинг эксепшена если айтема с таким ид нет
         Item item = repositoryManager
                 .getItemRepository()
                 .getReferenceById(id);
@@ -98,6 +101,7 @@ public class ItemService {
         item.setPrice(itemCreateDTO.getPrice());
         if (itemCreateDTO.getStatus() != null) item.setStatus(itemCreateDTO.getStatus());
 
+        // поменять метод на такой же метод но ерпозитории
         Category category = entityManager
                 .getReference(Category.class, itemCreateDTO.getCategoryId());
         item.setCategory(category);
