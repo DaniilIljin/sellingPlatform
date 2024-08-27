@@ -6,6 +6,7 @@ import ViewItem from "./pages/item/ViewItem.tsx";
 import ErrorPage from "./pages/root/ErrorPage.tsx";
 import Root from "./pages/root/Root.tsx";
 import Shop from "./pages/shop/Shop.tsx";
+import AddItem from "./pages/item/AddItem.tsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: "viewItem/:id",
                 element: <ViewItem />,
+            },
+            {
+                path: "addItem",
+                element: <AddItem />,
             },
         ],
     },

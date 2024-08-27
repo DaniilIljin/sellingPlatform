@@ -1,31 +1,32 @@
+import AddIcon from "@mui/icons-material/Add";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FolderIcon from "@mui/icons-material/Folder";
 import SearchIcon from "@mui/icons-material/Search";
 import {
     Box,
-    Button,
+    ButtonGroup,
+    Divider,
     IconButton,
     Paper,
     TextField,
     Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
+import useFetchBrands from "../hooks/useFetchBrands";
 import useFetchCategories from "../hooks/useFetchCategories";
 import CategoryAccordion from "./CategoryAccordion";
+import BrandAccordion from "./BrsndAccordion";
 
 const SidePanel = () => {
     const { categories } = useFetchCategories();
-
-    // const categories = [
-    //     { name: "Electronics", subCategories: ["Phones", "Laptops", "Cameras"] },
-    //     { name: "Fashion", subCategories: ["Men", "Women", "Kids"] },
-    //     {
-    //         name: "Home & Kitchen",
-    //         subCategories: ["Furniture", "Appliances", "Decor"],
-    //     },
-    // ];
+    const { brands } = useFetchBrands();
 
     return (
         <>
-            <Paper elevation={5} sx={{ padding: 2, bgcolor: "background.paper" }}>
+            <Paper
+                elevation={5}
+                sx={{ padding: 2, bgcolor: "background.paper" }}
+            >
                 <Box
                     sx={{
                         display: "flex",
@@ -34,14 +35,17 @@ const SidePanel = () => {
                         mb: 1,
                     }}
                 >
-                    <Button
-                        fullWidth={true}
-                        color="primary"
-                        aria-label="liked items"
-                    >
-                        <FavoriteIcon />
-                        <Typography variant="body2">Liked Items</Typography>
-                    </Button>
+                    <ButtonGroup variant="contained">
+                        <IconButton>
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton>
+                            <FolderIcon />
+                        </IconButton>
+                        <IconButton component={Link} to={"addItem"}>
+                            <AddIcon />
+                        </IconButton>
+                    </ButtonGroup>
                 </Box>
                 <Box sx={{ mb: 1 }}>
                     <TextField
@@ -51,7 +55,7 @@ const SidePanel = () => {
                         placeholder="Search..."
                         InputProps={{
                             endAdornment: (
-                                <IconButton edge="end" >
+                                <IconButton edge="end">
                                     <SearchIcon />
                                 </IconButton>
                             ),
@@ -72,6 +76,10 @@ const SidePanel = () => {
 
                 {categories.map((category, index) => (
                     <CategoryAccordion key={index} category={category} />
+                ))}
+                <Divider />
+                {brands.map((brand, index) => (
+                    <BrandAccordion key={index} brand={brand} />
                 ))}
             </Paper>
         </>

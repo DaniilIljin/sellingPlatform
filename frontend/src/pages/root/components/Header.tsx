@@ -29,7 +29,7 @@ const Header = (props: Props) => {
                         component={RouterLink}
                         color="inherit"
                         underline="none"
-                        to={"/shop"}
+                        to={"/"}
                     >
                         OKi-huyoki
                     </Link>
