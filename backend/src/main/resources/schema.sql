@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS picture (
     CONSTRAINT picture_item
         FOREIGN KEY (item_id)
         REFERENCES item (id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS liked_items (
@@ -71,7 +72,8 @@ CREATE TABLE IF NOT EXISTS liked_items (
     item_id BIGINT NOT NULL,
     CONSTRAINT liked_items_item
         FOREIGN KEY (item_id)
-        REFERENCES item (id),
+        REFERENCES item (id)
+        ON DELETE CASCADE,
     CONSTRAINT liked_items_user
         FOREIGN KEY (user_id)
         REFERENCES "user" (id)

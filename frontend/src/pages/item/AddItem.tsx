@@ -1,27 +1,26 @@
 import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from '@mui/icons-material/Save';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import {
     Box,
     Button,
+    CardMedia,
     Grid,
     IconButton,
     MenuItem,
     TextField,
     Typography,
-    CardMedia,
 } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Carousel from "react-material-ui-carousel";
-import useFetchCategories from "../shop/hooks/useFetchCategories";
-import { OpenInNewRounded } from "@mui/icons-material";
-import SaveIcon from '@mui/icons-material/Save';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
 import useFetchBrands from "../shop/hooks/useFetchBrands";
+import useFetchCategories from "../shop/hooks/useFetchCategories";
 
 interface FormValues {
     itemName: string;
     categoryId: string;
-    brandId: string;
+    brandId?: string;
     description: string;
     price: number;
 }
@@ -53,8 +52,11 @@ const AddItem: React.FC = () => {
     };
 
     const onSubmit = async (data: FormValues) => {
+        console.log(data);
+        return
+
         try {
-            const response = await fetch("http://example.com/api/items", {
+            const response = await fetch("http://localhost:8080/api/item", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -182,6 +184,7 @@ const AddItem: React.FC = () => {
                             name="itemName"
                             control={control}
                             defaultValue=""
+                            rules={{ required: 'Item Name is required' }}
                             render={({ field }) => (
                                 <TextField
                                     {...field}
@@ -194,8 +197,9 @@ const AddItem: React.FC = () => {
                         />
                         <Controller
                             name="categoryId"
+                            defaultValue=''
                             control={control}
-                            defaultValue=""
+                            rules={{ required: 'Category is required' }}
                             render={({ field }) => (
                                 <TextField
                                     {...field}
@@ -237,6 +241,7 @@ const AddItem: React.FC = () => {
                         <Controller
                             name="description"
                             control={control}
+                            rules={{ required: 'Description is required' }}
                             render={({ field }) => (
                                 <TextField
                                     {...field}
@@ -252,6 +257,7 @@ const AddItem: React.FC = () => {
                         <Controller
                             name="price"
                             control={control}
+                            rules={{ required: 'Price is required' }}
                             render={({ field }) => (
                                 <TextField
                                     {...field}

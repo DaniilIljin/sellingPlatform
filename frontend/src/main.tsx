@@ -7,6 +7,7 @@ import ErrorPage from "./pages/root/ErrorPage.tsx";
 import Root from "./pages/root/Root.tsx";
 import Shop from "./pages/shop/Shop.tsx";
 import AddItem from "./pages/item/AddItem.tsx";
+import Test from "./pages/example/Test.tsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
     {
         path: "/example",
         element: <StorePage />,
+    },
+    {
+        path: "/test",
+        element:   <Test />,
     },
 ]);
 
