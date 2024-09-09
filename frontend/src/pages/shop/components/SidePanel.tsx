@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import useFetchBrands from "../hooks/useFetchBrands";
 import useFetchCategories from "../hooks/useFetchCategories";
 import CategoryAccordion from "./CategoryAccordion";
-import BrandAccordion from "./BrsndAccordion";
+import BrandAccordion from "./BrandAccordion";
 
 const SidePanel = () => {
     const { categories } = useFetchCategories();

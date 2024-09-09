@@ -1,4 +1,4 @@
-import { StrictMode} from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StorePage from "./pages/example/StorePage.tsx";
@@ -8,6 +8,9 @@ import Root from "./pages/root/Root.tsx";
 import Shop from "./pages/shop/Shop.tsx";
 import AddItem from "./pages/item/AddItem.tsx";
 import Test from "./pages/example/Test.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
@@ -35,12 +38,14 @@ const router = createBrowserRouter([
     },
     {
         path: "/test",
-        element:   <Test />,
+        element: <Test />,
     },
 ]);
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
+        <QueryClientProvider client={queryClient}>
             <RouterProvider router={router}></RouterProvider>
+        </QueryClientProvider>
     </StrictMode>
 );

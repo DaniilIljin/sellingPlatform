@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
 import { Brand } from "../../../dto/Brand";
 
 type Props = {
