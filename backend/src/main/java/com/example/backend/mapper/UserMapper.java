@@ -1,6 +1,7 @@
 package com.example.backend.mapper;
 
 import com.example.backend.dto.UserDTO;
+import com.example.backend.dto.UserRegisterDTO;
 import com.example.backend.security.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,5 +19,9 @@ public class UserMapper {
 
     public User convertUserDTOToUser(UserDTO userDTO) {
         return modelMapper.map(userDTO, User.class);
+    }
+
+    public User convertUserRegisterDTOToUser(UserRegisterDTO userRegisterDTO) {
+        return modelMapper.map(userRegisterDTO, User.class);
     }
 }

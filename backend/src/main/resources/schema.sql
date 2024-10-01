@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS "user" (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name varchar(40) NOT NULL,
     email varchar(40) NOT NULL,
-    password varchar(20) NOT NULL,
+    password varchar(150) NOT NULL,
     address varchar(40) NOT NULL,
     additional_info varchar(200) NOT NULL
 );
@@ -75,6 +75,17 @@ CREATE TABLE IF NOT EXISTS liked_items (
         REFERENCES item (id)
         ON DELETE CASCADE,
     CONSTRAINT liked_items_user
+        FOREIGN KEY (user_id)
+        REFERENCES "user" (id)
+);
+
+CREATE TABLE IF NOT EXISTS refresh_tokens(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    token_hashed TEXT NOT NULL,
+    creation_date TIMESTAMPTZ NOT NULL,
+    expiry_date TIMESTAMPTZ NOT NULL,
+    user_id BIGINT NOT NULL,
+    CONSTRAINT refresh_tokens_user
         FOREIGN KEY (user_id)
         REFERENCES "user" (id)
 );
