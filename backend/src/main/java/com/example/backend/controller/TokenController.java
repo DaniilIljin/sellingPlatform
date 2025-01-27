@@ -22,7 +22,7 @@ public class TokenController {
     public JwtResponseDTO refreshToken(@RequestBody String refreshToken) {
         // тут решить что возвращать если рефреш токен не действителен
         // сервис мб ошибку выдает если не действителен или сделать так чтобы выдавал
-        // так анверное лучше
+        // так анверное лучшеe
         return refreshTokenService.validateRefreshToken(refreshToken.substring(1, refreshToken.length() - 1));
 
     }
