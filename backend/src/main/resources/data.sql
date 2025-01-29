@@ -57,7 +57,7 @@ SELECT 'XX-Large' WHERE NOT EXISTS (SELECT 1 FROM size WHERE name = 'XX-Large');
 
 -- Insert data into 'user' table
 INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'John Doe', 'john.doe@example.com', 'password123', '123 Elm Street', 'Regular customer'
+SELECT 'John Doe', 'john.doe@example.com', '$2a$10$7RQ7BbfNxxPLaHDcfQrthOu8kU3k0hiay3l.URwzB2f5NgM.yIt2m', '123 Elm Street', 'Regular customer'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'john.doe@example.com');
 INSERT INTO "user" (name, email, password, address, additional_info)
 SELECT 'Jane Smith', 'jane.smith@example.com', 'securepass', '456 Oak Avenue', 'VIP customer'
@@ -112,3 +112,8 @@ WHERE NOT EXISTS (SELECT 1 FROM picture WHERE item_id = 4 AND file_name = 'under
 INSERT INTO picture (item_id, file_name, file_location)
 SELECT 5, 'reebok_jacket.jpg', 'images/reebok_jacket.jpg'
 WHERE NOT EXISTS (SELECT 1 FROM picture WHERE item_id = 5 AND file_name = 'reebok_jacket.jpg');
+
+
+--INSERT INTO refresh_tokens (token_hashed, creation_date, expiry_date, user_id)
+--SELECT '$2a$10$XI4SCI8fuGcMC0sA9ZbwKuSvcubJ/iBYDzpZCxNhUYt6720yjcqcu', NOW(), NOW() + INTERVAL '30 days', 1
+--WHERE NOT EXISTS (SELECT 1 FROM refresh_tokens WHERE user_id = 1);

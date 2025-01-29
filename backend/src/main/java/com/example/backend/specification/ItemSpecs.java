@@ -14,6 +14,8 @@ import jakarta.persistence.criteria.Root;
 @Component
 public class ItemSpecs {
 
+    //мб ненужная хуйня но пусть пока будет
+
     public static Specification<Item> buildSpecification(Long categoryId, Long sizeId,
                                                          Long brandId, Long sellerId, String name,
                                                          Integer status, String description,

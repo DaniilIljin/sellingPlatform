@@ -1,13 +1,7 @@
 package com.example.backend.service;
 
+import com.example.backend.repository.*;
 import org.springframework.stereotype.Component;
-
-import com.example.backend.repository.BrandRepository;
-import com.example.backend.repository.CategoryRepository;
-import com.example.backend.repository.ItemRepository;
-import com.example.backend.repository.PictureRepository;
-import com.example.backend.repository.SizeRepository;
-import com.example.backend.repository.UserRepository;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +22,6 @@ public class RepositoryManager {
     private final SizeRepository sizeRepository;
 
     private final UserRepository userRepository;
+
+    private final RefreshTokenRepository refreshTokenRepository;
 }
