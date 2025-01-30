@@ -38,10 +38,11 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.12.780</version>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>s3</artifactId>
+			<version>2.20.147</version> <!-- Use the latest version -->
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
