@@ -57,7 +57,7 @@ SELECT 'XX-Large' WHERE NOT EXISTS (SELECT 1 FROM size WHERE name = 'XX-Large');
 
 -- Insert data into 'user' table
 INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'John Doe', 'john.doe@example.com', '$2a$10$7RQ7BbfNxxPLaHDcfQrthOu8kU3k0hiay3l.URwzB2f5NgM.yIt2m', '123 Elm Street', 'Regular customer'
+SELECT 'John Doe', 'john.doe@example.com', '$2a$10$H6zJ2Cz2u7qybYvP9AuNye.A8eHsDNhasd4LKsujX5UP9epmjjyvu', '123 Elm Street', 'Regular customer'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'john.doe@example.com');
 INSERT INTO "user" (name, email, password, address, additional_info)
 SELECT 'Jane Smith', 'jane.smith@example.com', 'securepass', '456 Oak Avenue', 'VIP customer'
