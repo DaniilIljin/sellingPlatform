@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import java.util.List;
 
+import com.example.backend.dto.ItemCreateDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,8 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createItem(@RequestBody ItemFullDTO itemFullDTO) {
-        Item item = itemService.saveItem(itemFullDTO);
+    public ResponseEntity<Void> createItem(@RequestBody ItemCreateDTO itemCreateDTO) {
+        Item item = itemService.addNewItem(itemCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

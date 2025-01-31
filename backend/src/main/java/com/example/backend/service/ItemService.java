@@ -1,17 +1,17 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.ItemCreateDTO;
 import com.example.backend.dto.ItemFullDTO;
 import com.example.backend.dto.ItemDTO;
 import com.example.backend.mapper.ItemMapper;
-import com.example.backend.model.Brand;
-import com.example.backend.model.Category;
-import com.example.backend.model.Item;
-import com.example.backend.model.Size;
+import com.example.backend.model.*;
 import com.example.backend.security.User;
 import com.example.backend.specification.ItemSpecs;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,6 +73,49 @@ public class ItemService {
 
         Item item = mapper.convertItemFullDTOtoItem(itemFullDTO);
         return repositoryManager.getItemRepository().save(item);
+    }
+
+    @Transactional
+    public Item addNewItem(ItemCreateDTO itemCreateDTO) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+
+        Item item = new Item();
+
+        // по идее переместить это всё в mapper надо
+        // ну и эксепшен норм сделать
+        // но щас похуй пусть пока так
+        try {
+            item.setName(itemCreateDTO.getName());
+            item.setDescription(itemCreateDTO.getDescription());
+            item.setStatus(0);
+            item.setPrice(itemCreateDTO.getPrice());
+            item.setBrand(repositoryManager
+                    .getBrandRepository()
+                    .getReferenceById(itemCreateDTO.getBrandId()));
+            item.setSize(repositoryManager
+                    .getSizeRepository()
+                    .getReferenceById(itemCreateDTO.getSizeId()));
+            item.setSeller(user);
+            item.setCategory(repositoryManager
+                    .getCategoryRepository()
+                    .getReferenceById(itemCreateDTO.getCategoryId()));
+        } catch (EntityNotFoundException e) {
+            throw new RuntimeException();
+        }
+
+        Item savedItem = repositoryManager.getItemRepository().save(item);
+
+        for (String pictureName : itemCreateDTO.getPictureNames()) {
+
+            Picture picture = new Picture();
+            picture.setItem(savedItem);
+            picture.setFileName(pictureName);
+            repositoryManager.getPictureRepository().save(picture);
+        }
+
+        return savedItem;
     }
 
     public void deleteItem(Long id) {
