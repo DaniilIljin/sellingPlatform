@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.backend.dto.JwtResponseDTO;
 import com.example.backend.dto.UserLoginDTO;
 import com.example.backend.dto.UserRegisterDTO;
+import com.example.backend.security.User;
 import com.example.backend.security.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody UserRegisterDTO userRegisterDTO) {
-        userService.registerUser(userRegisterDTO);
+        User user = userService.registerUser(userRegisterDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

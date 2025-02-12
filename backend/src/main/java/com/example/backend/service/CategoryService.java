@@ -11,6 +11,7 @@ import com.example.backend.mapper.CategoryMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +58,7 @@ public class CategoryService {
         repositoryManager.getCategoryRepository().delete(category);
     }
 
+    @Transactional
     public void updateCategory(Long id, CategoryDTO categoryDTO) {
         Category category = repositoryManager
                 .getCategoryRepository()

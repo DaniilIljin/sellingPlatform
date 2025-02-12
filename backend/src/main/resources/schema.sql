@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS "user" (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name varchar(40) NOT NULL,
+    name varchar(40) NOT NULL UNIQUE,
+    full_name varchar(40) NOT NULL,
     email varchar(40) NOT NULL,
     password varchar(150) NOT NULL,
     address varchar(40) NOT NULL,

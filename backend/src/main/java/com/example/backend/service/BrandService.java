@@ -37,8 +37,6 @@ public class BrandService {
                 .toList();
     }
 
-    // где убрать а где оставить transactional
-    @Transactional
     public Brand saveBrand(BrandDTO brandDTO) {
         Brand brand = mapper.convertBrandDTOToBrand(brandDTO);
         return repositoryManager.getBrandRepository().save(brand);
@@ -55,10 +53,13 @@ public class BrandService {
         repositoryManager.getBrandRepository().delete(brand);
     }
 
+    // Здесть надо transactional, тогда можно не вызывать save метод
     @Transactional
     public void updateBrand(Long id, BrandDTO brandDTO) {
-        Brand brand = repositoryManager.getBrandRepository().getReferenceById(id);
+        Brand brand = repositoryManager
+                .getBrandRepository().
+                findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Brand wasn't found"));
         brand.setName(brandDTO.getName());
-        repositoryManager.getBrandRepository().save(brand);
     }
 }

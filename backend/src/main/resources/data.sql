@@ -56,17 +56,17 @@ INSERT INTO size (name)
 SELECT 'XX-Large' WHERE NOT EXISTS (SELECT 1 FROM size WHERE name = 'XX-Large');
 
 -- Insert data into 'user' table
-INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'John Doe', 'john.doe@example.com', '$2a$10$H6zJ2Cz2u7qybYvP9AuNye.A8eHsDNhasd4LKsujX5UP9epmjjyvu', '123 Elm Street', 'Regular customer'
+INSERT INTO "user" (name, full_name, email, password, address, additional_info)
+SELECT 'user1nickname', 'John Doe', 'john.doe@example.com', '$2a$10$H6zJ2Cz2u7qybYvP9AuNye.A8eHsDNhasd4LKsujX5UP9epmjjyvu', '123 Elm Street', 'Regular customer'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'john.doe@example.com');
-INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'Jane Smith', 'jane.smith@example.com', 'securepass', '456 Oak Avenue', 'VIP customer'
+INSERT INTO "user" (name, full_name, email, password, address, additional_info)
+SELECT 'user2nickname', 'Jane Smith', 'jane.smith@example.com', 'securepass', '456 Oak Avenue', 'VIP customer'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'jane.smith@example.com');
-INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'Alice Johnson', 'alice.johnson@example.com', 'mypassword', '789 Pine Road', 'Frequent buyer'
+INSERT INTO "user" (name, full_name, email, password, address, additional_info)
+SELECT 'user3nickname', 'Alice Johnson', 'alice.johnson@example.com', 'mypassword', '789 Pine Road', 'Frequent buyer'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'alice.johnson@example.com');
-INSERT INTO "user" (name, email, password, address, additional_info)
-SELECT 'Bob Brown', 'bob.brown@example.com', '123456', '101 Maple Lane', 'New user'
+INSERT INTO "user" (name, full_name, email, password, address, additional_info)
+SELECT 'user4nickname', 'Bob Brown', 'bob.brown@example.com', '123456', '101 Maple Lane', 'New user'
 WHERE NOT EXISTS (SELECT 1 FROM "user" WHERE email = 'bob.brown@example.com');
 
 -- Insert data into 'item' table

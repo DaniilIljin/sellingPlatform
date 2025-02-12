@@ -1,19 +1,15 @@
 package com.example.backend.service;
 
 import com.example.backend.dto.UserDTO;
-import com.example.backend.dto.UserLoginDTO;
 import com.example.backend.dto.UserRegisterDTO;
+import com.example.backend.exception.UsernameAlreadyExistsException;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.security.User;
 import com.example.backend.security.service.JWTService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +28,8 @@ public class UserService {
     private final UserMapper mapper;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final UserDetailsService userDetailsService;
 
     public UserDTO getUserById(Long id) {
         return repositoryManager
@@ -65,11 +63,17 @@ public class UserService {
 //    }
 
     
-    public void registerUser(UserRegisterDTO userRegisterDTO) {
+    public User registerUser(UserRegisterDTO userRegisterDTO) {
+
+        if (repositoryManager.getUserRepository().existsByName(userRegisterDTO.getName())) {
+            throw new UsernameAlreadyExistsException("User with name " + userRegisterDTO.getName() + " " +
+                    "already exists");
+        }
+
         User user = mapper.convertUserRegisterDTOToUser(userRegisterDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        repositoryManager
-                .getUserRepository()
-                .save(user);
+
+        return repositoryManager.getUserRepository().save(user);
+
     }
 }

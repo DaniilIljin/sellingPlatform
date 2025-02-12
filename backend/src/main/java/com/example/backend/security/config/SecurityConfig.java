@@ -12,6 +12,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,7 +49,7 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity
-                .csrf(customizer -> customizer.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("api/user/register", "api/auth/login", "api/auth/refreshToken",
                                 "/swagger-ui/**", "/v3/api-docs/**", "/api/s3/**")
